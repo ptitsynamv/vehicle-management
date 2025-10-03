@@ -1,0 +1,180 @@
+openapi: 3.0.0
+info:
+  title: Vehicle API
+  description: API to retrieve and add vehicles.
+  version: 1.0.0
+servers:
+  - url: https://67d4273b8bca322cc26c5b38.mockapi.io/
+    description: Mock API server
+paths:
+  /vehicles:
+    get:
+      summary: Retrieve a list of vehicles
+      operationId: getVehicles
+      responses:
+        '200':
+          description: A JSON array of vehicle objects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: "1"
+                    name:
+                      type: string
+                      example: "Toyota Wrangler"
+                    manufacturer:
+                      type: string
+                      example: "Land Rover"
+                    model:
+                      type: string
+                      example: "CX-9"
+                    fuel:
+                      type: string
+                      example: "Diesel"
+                    type:
+                      type: string
+                      example: "Cargo Van"
+                    vin:
+                      type: string
+                      example: "GCPM63Z13MT381419"
+                    color:
+                      type: string
+                      example: "yellow"
+                      nullable: true
+                    mileage:
+                      type: number
+                      example: 65000
+                      nullable: true
+    post:
+      summary: Add a new vehicle
+      operationId: addVehicle
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - manufacturer
+                - model
+                - fuel
+                - type
+                - vin
+              properties:
+                name:
+                  type: string
+                  example: "TEST Wrangler"
+                manufacturer:
+                  type: string
+                  example: "Bentley"
+                model:
+                  type: string
+                  example: "Challenger"
+                fuel:
+                  type: string
+                  example: "Gasoline"
+                type:
+                  type: string
+                  example: "Crew Cab Pickup"
+                vin:
+                  type: string
+                  example: "1VWELR3D4RR736243"
+                color:
+                  type: string
+                  example: "mint green"
+                  nullable: true
+                mileage:
+                  type: number
+                  example: 75000
+                  nullable: true
+      responses:
+        '201':
+          description: Vehicle added successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: "51"
+                  name:
+                    type: string
+                    example: "Wrangler"
+                  manufacturer:
+                    type: string
+                    example: "Bentley"
+                  model:
+                    type: string
+                    example: "Challenger"
+                  fuel:
+                    type: string
+                    example: "Gasoline"
+                  type:
+                    type: string
+                    example: "Crew Cab Pickup"
+                  vin:
+                    type: string
+                    example: "1VWELR3D4RR736243"
+                  color:
+                    type: string
+                    example: "mint green"
+                    nullable: true
+                  mileage:
+                    type: number
+                    example: 75000
+                    nullable: true
+  /vehicles/{id}:
+    get:
+      summary: Retrieve a single vehicle by id
+      operationId: getVehicleById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the vehicle to retrieve
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A JSON vehicle object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: "1"
+                  name:
+                    type: string
+                    example: "Toyota Wrangler"
+                  manufacturer:
+                    type: string
+                    example: "Land Rover"
+                  model:
+                    type: string
+                    example: "CX-9"
+                  fuel:
+                    type: string
+                    example: "Diesel"
+                  type:
+                    type: string
+                    example: "Cargo Van"
+                  vin:
+                    type: string
+                    example: "GCPM63Z13MT381419"
+                  color:
+                    type: string
+                    example: "yellow"
+                    nullable: true
+                  mileage:
+                    type: number
+                    example: 65000
+                    nullable: true
