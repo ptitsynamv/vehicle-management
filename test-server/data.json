@@ -1,0 +1,24 @@
+[
+  {
+    "id": "1",
+    "name": "Toyota Wrangler",
+    "manufacturer": "Land Rover",
+    "model": "CX-9",
+    "fuel": "Diesel",
+    "type": "Cargo Van",
+    "vin": "GCPM63Z13MT381419",
+    "color": "yellow",
+    "mileage": 65000
+  },
+  {
+    "id": "2",
+    "name": "Honda Civic",
+    "manufacturer": "Honda",
+    "model": "Civic LX",
+    "fuel": "Gasoline",
+    "type": "Sedan",
+    "vin": "2HGFB2F59DH512345",
+    "color": "blue",
+    "mileage": 42000
+  }
+]
