@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Vehicle } from '../models/vehicle.model';
+import { CreateVehicle, Vehicle } from '../models/vehicle.model';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -19,7 +19,7 @@ export class VehicleService {
     return this.http.get<Vehicle | null>(`${this.apiUrl}/vehicles/${id}`);
   }
 
-  public createVehicle(vehicleData: any) {
-    return this.http.post(`${this.apiUrl}/vehicles`, vehicleData);
+  public createVehicle(vehicle: CreateVehicle): Observable<Vehicle> {
+    return this.http.post<Vehicle>(`${this.apiUrl}/vehicles`, vehicle);
   }
 }

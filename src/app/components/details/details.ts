@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Vehicle } from '../../models/vehicle.model';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { VehicleService } from '../../services/vehicle';
 import { catchError } from 'rxjs';
 
@@ -11,13 +11,12 @@ import { catchError } from 'rxjs';
   styleUrl: './details.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DetailsComponent implements OnInit {
+export class Details implements OnInit {
   public vehicle: Vehicle | null = null;
 
   constructor(
     private _route: ActivatedRoute,
     private _vehicleService: VehicleService,
-    private _router: Router,
     private _ref: ChangeDetectorRef
   ) {}
 

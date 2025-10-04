@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { ListComponent } from './components/list/list';
-import { PageNotFoundComponent } from './core/components/page-not-found/page-not-found';
-import { DetailsComponent } from './components/details/details';
+import { List } from './components/list/list';
+import { PageNotFound } from './core/components/page-not-found/page-not-found';
+import { Details } from './components/details/details';
 
 export const routes: Routes = [
-  { path: '', component: ListComponent },
-  { path: 'vehicle/:id', component: DetailsComponent },
-  { path: '**', component: PageNotFoundComponent },
+  { path: '', component: List },
+  { path: 'vehicle/:id', component: Details },
+  { path: '**', component: PageNotFound },
 ];

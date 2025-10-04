@@ -1,5 +1,7 @@
 @if (vehicle) {
-<div class="flex flex-col bg-white border border-gray-200 shadow-2xs rounded-xl p-4 md:p-5">
+<div
+  class="flex flex-col max-w-sm bg-white border border-gray-200 shadow-2xs rounded-xl p-4 md:p-5"
+>
   <h3 class="text-lg font-bold text-gray-800">{{ vehicle.name }}</h3>
   <p class="mt-1 text-xs font-medium uppercase text-gray-500">ID: {{ vehicle.id }}</p>
   <p class="mt-1 text-xs font-medium uppercase text-gray-500">
@@ -9,8 +11,16 @@
   <p class="mt-1 text-xs font-medium uppercase text-gray-500">Fuel: {{ vehicle.fuel }}</p>
   <p class="mt-1 text-xs font-medium uppercase text-gray-500">Type: {{ vehicle.type }}</p>
   <p class="mt-1 text-xs font-medium uppercase text-gray-500">VIN: {{ vehicle.vin }}</p>
-  <p class="mt-1 text-xs font-medium uppercase text-gray-500">Color: {{ vehicle.color }}</p>
-  <p class="mt-1 text-xs font-medium uppercase text-gray-500">Mileage: {{ vehicle.mileage }}</p>
+  <p class="mt-1 text-xs font-medium uppercase text-gray-500">
+    Color: @if (vehicle.color) {
+    {{ vehicle.color }}
+    } @else { - }
+  </p>
+  <p class="mt-1 text-xs font-medium uppercase text-gray-500">
+    Mileage: @if (vehicle.mileage) {
+    {{ vehicle.mileage }}
+    } @else { - }
+  </p>
 </div>
 } @else {
 <div class="flex flex-col items-center">

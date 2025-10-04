@@ -1,20 +1,24 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { VehicleService } from '../../services/vehicle';
-import { SortableVehicleKeys, Vehicle } from '../../models/vehicle.model';
+import { CreateVehicle, SortableVehicleKeys, Vehicle } from '../../models/vehicle.model';
 import { RouterLink } from '@angular/router';
 import { SortOrder } from '../../models/common.model';
+import { AddVehicleModal } from '../add-vehicle-modal/add-vehicle-modal';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-list',
-  imports: [RouterLink],
+  imports: [RouterLink, AddVehicleModal],
   templateUrl: './list.html',
   styleUrl: './list.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ListComponent implements OnInit {
+export class List implements OnInit {
   public displayedVehicles: Vehicle[] = [];
   public currentPage = 1;
   public totalPages = 0;
+  public isModalOpen = false;
+  public errorMessage = '';
 
   private _vehicles: Vehicle[] = [];
   private _sortOrder: SortOrder = 'asc';
@@ -49,7 +53,31 @@ export class ListComponent implements OnInit {
     this._updateDisplayedVehicles();
   }
 
-  public onAddVehicle(): void {}
+  public openModal(): void {
+    this.isModalOpen = true;
+  }
+
+  public closeModal(): void {
+    this.isModalOpen = false;
+  }
+
+  public onVehicleAdded(vehicle: CreateVehicle): void {
+    this._vehicleService
+      .createVehicle(vehicle)
+      .pipe(
+        catchError((error) => {
+          console.error('Error creating vehicle:', error);
+          this.errorMessage = 'Failed to add vehicle. Please try again.';
+          this._ref.detectChanges();
+          throw error;
+        })
+      )
+      .subscribe(() => {
+        this.errorMessage = '';
+        this.closeModal();
+        this._loadVehicles();
+      });
+  }
 
   private _loadVehicles(): void {
     this._vehicleService.getVehicles().subscribe((data) => {

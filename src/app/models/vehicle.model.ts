@@ -6,8 +6,10 @@ export interface Vehicle {
   fuel: string;
   type: string;
   vin: string;
-  color: string;
-  mileage: number;
+  color: string | null;
+  mileage: number | null;
 }
 
 export type SortableVehicleKeys = keyof Pick<Vehicle, 'name' | 'manufacturer' | 'model'>;
+
+export type CreateVehicle = Omit<Vehicle, 'id'>;

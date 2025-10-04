@@ -1,0 +1,137 @@
+<div class="fixed inset-0 bg-black/40 flex justify-center items-center z-50" [hidden]="!isOpen">
+  <div class="bg-white w-full max-w-lg rounded-2xl shadow-xl p-6 relative">
+    <h2 class="text-xl font-semibold text-gray-800 mb-4">Add New Vehicle</h2>
+    <button
+      (click)="onClose()"
+      class="absolute top-3 right-3 text-gray-500 hover:text-gray-700 cursor-pointer"
+    >
+      ✕
+    </button>
+    <form [formGroup]="vehicleForm" (ngSubmit)="onSubmit()" class="space-y-3">
+      <div class="mb-5">
+        <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Name</label>
+        <input
+          type="text"
+          formControlName="name"
+          id="name"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400"
+          placeholder="TEST Wrangler"
+        />
+        @if (vehicleForm.get('name')?.hasError('required') && vehicleForm.get('name')?.touched) {
+        <p class="mt-2 text-sm text-red-600">Name is required.</p>
+        }
+      </div>
+
+      <div class="relative z-0 w-full mb-5 group">
+        <label for="manufacturer" class="block mb-2 text-sm font-medium text-gray-900"
+          >Manufacturer</label
+        >
+        <input
+          type="text"
+          formControlName="manufacturer"
+          id="manufacturer"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400"
+          placeholder="Bentley"
+        />
+        @if (vehicleForm.get('manufacturer')?.hasError('required') &&
+        vehicleForm.get('manufacturer')?.touched) {
+        <p class="mt-2 text-sm text-red-600">Manufacturer is required.</p>
+        }
+      </div>
+      <div class="grid md:grid-cols-2 md:gap-6">
+        <div class="relative z-0 w-full mb-5 group">
+          <label for="model" class="block mb-2 text-sm font-medium text-gray-900">Model</label>
+          <input
+            type="text"
+            formControlName="model"
+            id="model"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400"
+            placeholder="Challenger"
+          />
+          @if (vehicleForm.get('model')?.hasError('required') && vehicleForm.get('model')?.touched)
+          {
+          <p class="mt-2 text-sm text-red-600">Model is required.</p>
+          }
+        </div>
+        <div class="relative z-0 w-full mb-5 group">
+          <label for="fuel" class="block mb-2 text-sm font-medium text-gray-900">Fuel</label>
+          <input
+            type="text"
+            formControlName="fuel"
+            id="fuel"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400"
+            placeholder="Gasoline"
+          />
+          @if (vehicleForm.get('fuel')?.hasError('required') && vehicleForm.get('fuel')?.touched) {
+          <p class="mt-2 text-sm text-red-600">Fuel type is required.</p>
+          }
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 md:gap-6">
+        <div class="relative z-0 w-full mb-5 group">
+          <label for="type" class="block mb-2 text-sm font-medium text-gray-900">Type</label>
+          <input
+            type="text"
+            formControlName="type"
+            id="type"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400"
+            placeholder="Crew Cab Pickup"
+          />
+          @if (vehicleForm.get('type')?.hasError('required') && vehicleForm.get('type')?.touched) {
+          <p class="mt-2 text-sm text-red-600">Type is required.</p>
+          }
+        </div>
+        <div class="relative z-0 w-full mb-5 group">
+          <label for="vin" class="block mb-2 text-sm font-medium text-gray-900">VIN</label>
+          <input
+            type="text"
+            formControlName="vin"
+            id="vin"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400"
+            placeholder="1VWELR3D4RR736243"
+          />
+          @if (vehicleForm.get('vin')?.hasError('required') && vehicleForm.get('vin')?.touched) {
+          <p class="mt-2 text-sm text-red-600">VIN is required.</p>
+          }
+        </div>
+      </div>
+      <div class="grid md:grid-cols-2 md:gap-6">
+        <div class="relative z-0 w-full mb-5 group">
+          <label for="color" class="block mb-2 text-sm font-medium text-gray-900">Color</label>
+          <input
+            type="text"
+            formControlName="color"
+            id="color"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400"
+            placeholder="Mint green"
+          />
+        </div>
+        <div class="relative z-0 w-full mb-5 group">
+          <label for="mileage" class="block mb-2 text-sm font-medium text-gray-900">Mileage</label>
+          <input
+            type="number"
+            formControlName="mileage"
+            id="mileage"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 placeholder-gray-400"
+            placeholder="75000"
+          />
+          @if (vehicleForm.get('mileage')?.hasError('min') && vehicleForm.get('mileage')?.touched) {
+          <p class="mt-2 text-sm text-red-600">Mileage must be greater than or equal to 0.</p>
+          }
+        </div>
+      </div>
+      <button
+        type="submit"
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+      >
+        Save
+      </button>
+    </form>
+    @if (errorMessage) {
+    <div class="mt-4 p-3 text-sm text-red-700 bg-red-100 rounded-lg" role="alert">
+      {{ errorMessage }}
+    </div>
+    }
+  </div>
+</div>

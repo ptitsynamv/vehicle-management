@@ -1,8 +1,9 @@
 <div class="flex flex-col">
   <div class="mb-4">
     <button
-      (click)="onAddVehicle()"
+      (click)="openModal()"
       class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
+      type="button"
     >
       Add new vehicle
     </button>
@@ -174,3 +175,11 @@
     </div>
   </div>
 </div>
+
+<app-add-vehicle-modal
+  [isOpen]="isModalOpen"
+  [errorMessage]="errorMessage"
+  (close)="closeModal()"
+  (save)="onVehicleAdded($event)"
+>
+</app-add-vehicle-modal>
