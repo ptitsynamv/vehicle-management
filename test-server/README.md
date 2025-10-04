@@ -1,13 +1,28 @@
-# Simple Test server
+# Simple Test Server
 
-Node v22.15.1, NPM v10.9.2
+This is a simple Node.js test server for managing vehicles.
 
-1. `npm install`
-2. `npm start`
+## Prerequisites
 
-API endpoints:
-GET /vehicles → list all vehicles
-GET /vehicles/:id → get vehicle by ID
-POST /vehicles → add vehicle (send JSON body)
-PUT /vehicles/:id → update vehicle
-DELETE /vehicles/:id → delete vehicle
+- Node.js v22.15.1
+- NPM v10.9.2
+
+## Setup
+
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Start the server:
+
+```bash
+npm start
+```
+
+## API Endpoints
+
+- **GET /vehicles** → List all vehicles
+- **GET /vehicles/\:id** → Get a vehicle by ID
+- **POST /vehicles** → Add a new vehicle
