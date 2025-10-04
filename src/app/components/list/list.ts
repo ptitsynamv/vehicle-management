@@ -72,7 +72,6 @@ export class List implements OnInit {
       .createVehicle(vehicle)
       .pipe(
         catchError((error) => {
-          console.error('Error creating vehicle:', error);
           this.errorMessage = 'Failed to add vehicle. Please try again.';
           this._ref.detectChanges();
           throw error;

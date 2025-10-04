@@ -2,7 +2,6 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@
 import { Vehicle } from '../../models/vehicle.model';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { VehicleService } from '../../services/vehicle';
-import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-details',
@@ -24,18 +23,10 @@ export class Details implements OnInit {
     this._route.params.subscribe((params) => {
       const { id } = params;
 
-      this._vehicleService
-        .getVehicleById(id)
-        .pipe(
-          catchError((error) => {
-            console.error('Error fetching vehicle:', error);
-            throw error;
-          })
-        )
-        .subscribe((data) => {
-          this.vehicle = data;
-          this._ref.detectChanges();
-        });
+      this._vehicleService.getVehicleById(id).subscribe((data) => {
+        this.vehicle = data;
+        this._ref.detectChanges();
+      });
     });
   }
 }
