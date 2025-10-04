@@ -1,17 +1,27 @@
-import { Component, EventEmitter, Output, Input } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Output,
+  Input,
+  ChangeDetectionStrategy,
+  signal,
+  effect,
+} from '@angular/core';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CreateVehicle } from '../../models/vehicle.model';
 
 @Component({
   selector: 'app-add-vehicle-modal',
-  standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './add-vehicle-modal.html',
   styleUrl: './add-vehicle-modal.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddVehicleModal {
-  @Input() public isOpen = false;
   @Input() public errorMessage = '';
+  @Input() set isOpen(value: boolean) {
+    this.isModalOpen.set(value);
+  }
 
   @Output() public close = new EventEmitter<void>();
   @Output() public save = new EventEmitter<CreateVehicle>();
@@ -26,19 +36,24 @@ export class AddVehicleModal {
     color: new FormControl(null),
     mileage: new FormControl(null, [Validators.min(0)]),
   });
+  public isModalOpen = signal(false);
 
   public onSubmit(): void {
     if (this.vehicleForm.valid) {
       this.save.emit(this.vehicleForm.value as CreateVehicle);
-      this.vehicleForm.reset();
     } else {
       this.vehicleForm.markAllAsTouched();
     }
   }
 
   public onClose(): void {
-    this.vehicleForm.reset();
-    this.errorMessage = '';
     this.close.emit();
   }
+
+  private _clearFormEffect = effect(() => {
+    if (!this.isModalOpen()) {
+      this.vehicleForm.reset();
+      this.errorMessage = '';
+    }
+  });
 }

@@ -131,7 +131,7 @@
                   </a>
                 </td>
               </tr>
-              } @empty {
+              } @empty { @if(displayedVehicles === null){ } @else {
               <tr>
                 <td
                   class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800"
@@ -140,7 +140,7 @@
                   No vehicles found.
                 </td>
               </tr>
-              }
+              } }
             </tbody>
           </table>
         </div>

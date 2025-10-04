@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const PORT = 3000;
 const DATA_FILE = './data.json';
+const delayTime = 500;
 
 app.use(
   cors({
@@ -30,14 +31,22 @@ function writeVehicles(vehicles) {
 
 app.get('/vehicles', (req, res) => {
   const vehicles = readVehicles();
-  res.json(vehicles);
+
+  setTimeout(() => {
+    res.json(vehicles);
+  }, delayTime);
 });
 
 app.get('/vehicles/:id', (req, res) => {
   const vehicles = readVehicles();
   const vehicle = vehicles.find((v) => v.id === req.params.id);
-  if (!vehicle) return res.status(404).json(null);
-  res.json(vehicle);
+  if (!vehicle) {
+    return res.status(404).json(null);
+  }
+
+  setTimeout(() => {
+    res.json(vehicle);
+  }, delayTime);
 });
 
 app.post('/vehicles', (req, res) => {
@@ -48,7 +57,10 @@ app.post('/vehicles', (req, res) => {
   };
   vehicles.push(newVehicle);
   writeVehicles(vehicles);
-  res.status(201).json(newVehicle);
+
+  setTimeout(() => {
+    res.status(201).json(newVehicle);
+  }, delayTime);
 });
 
 app.listen(PORT, () => {

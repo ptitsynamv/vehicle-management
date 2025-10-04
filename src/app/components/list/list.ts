@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { VehicleService } from '../../services/vehicle';
 import { CreateVehicle, SortableVehicleKeys, Vehicle } from '../../models/vehicle.model';
 import { RouterLink } from '@angular/router';
@@ -14,7 +20,7 @@ import { catchError } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class List implements OnInit {
-  public displayedVehicles: Vehicle[] = [];
+  public displayedVehicles: Vehicle[] | null = null;
   public currentPage = 1;
   public totalPages = 0;
   public isModalOpen = false;
