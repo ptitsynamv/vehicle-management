@@ -1,12 +1,15 @@
 const express = require('express');
-const fs = require('fs');
+const fs = require('fs').promises;
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const app = express();
 const PORT = 3000;
 const DATA_FILE = './data.json';
-const delayTime = 500;
+
+function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 app.use(
   cors({
@@ -16,51 +19,59 @@ app.use(
 
 app.use(bodyParser.json());
 
-function readVehicles() {
+async function readVehicles() {
   try {
-    const data = fs.readFileSync(DATA_FILE, 'utf-8');
+    const data = await fs.readFile(DATA_FILE, 'utf-8');
     return JSON.parse(data || '[]');
   } catch (err) {
+    console.error('Error reading vehicles:', err.message);
     return [];
   }
 }
 
-function writeVehicles(vehicles) {
-  fs.writeFileSync(DATA_FILE, JSON.stringify(vehicles, null, 2));
+async function writeVehicles(vehicles) {
+  try {
+    await fs.writeFile(DATA_FILE, JSON.stringify(vehicles, null, 2), 'utf-8');
+  } catch (err) {
+    console.error('Error writing vehicles:', err.message);
+  }
 }
 
-app.get('/vehicles', (req, res) => {
-  const vehicles = readVehicles();
-
-  setTimeout(() => {
+app.get('/vehicles', async (req, res) => {
+  try {
+    const vehicles = await readVehicles();
     res.json(vehicles);
-  }, delayTime);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Failed to load vehicles' });
+  }
 });
 
-app.get('/vehicles/:id', (req, res) => {
-  const vehicles = readVehicles();
+app.get('/vehicles/:id', async (req, res) => {
+  await delay(500);
+
+  const vehicles = await readVehicles();
   const vehicle = vehicles.find((v) => v.id === req.params.id);
+
   if (!vehicle) {
-    return res.status(404).json(null);
+    res.status(404).json(null);
   }
 
-  setTimeout(() => {
-    res.json(vehicle);
-  }, delayTime);
+  res.json(vehicle);
 });
 
-app.post('/vehicles', (req, res) => {
-  const vehicles = readVehicles();
+app.post('/vehicles', async (req, res) => {
+  await delay(500);
+
+  const vehicles = await readVehicles();
   const newVehicle = {
     id: (vehicles.length + 1).toString(),
     ...req.body,
   };
   vehicles.push(newVehicle);
-  writeVehicles(vehicles);
+  await writeVehicles(vehicles);
 
-  setTimeout(() => {
-    res.status(201).json(newVehicle);
-  }, delayTime);
+  res.status(201).json(newVehicle);
 });
 
 app.listen(PORT, () => {

@@ -23,78 +23,12 @@
   },
   {
     "id": "3",
-    "name": "test",
-    "manufacturer": "www",
-    "model": "qeq",
-    "fuel": "2we1",
-    "type": "ewdf",
-    "vin": "423412",
-    "color": "wd23",
-    "mileage": 3
-  },
-  {
-    "id": "4",
-    "name": "ewfd3df",
-    "manufacturer": "ef3",
-    "model": "f3f",
-    "fuel": "3f",
-    "type": "3f3",
-    "vin": "3f",
-    "color": null,
-    "mileage": null
-  },
-  {
-    "id": "5",
-    "name": "qs",
+    "name": "qss",
     "manufacturer": "qs",
     "model": "sq",
     "fuel": "sq",
     "type": "sq",
     "vin": "sq",
-    "color": null,
-    "mileage": null
-  },
-  {
-    "id": "6",
-    "name": "dqd",
-    "manufacturer": "dq",
-    "model": "ddq",
-    "fuel": "dq",
-    "type": "dq",
-    "vin": "dq",
-    "color": null,
-    "mileage": null
-  },
-  {
-    "id": "7",
-    "name": "dq",
-    "manufacturer": "qd",
-    "model": "q",
-    "fuel": "dq",
-    "type": "dq",
-    "vin": "dq",
-    "color": null,
-    "mileage": null
-  },
-  {
-    "id": "8",
-    "name": "qdq",
-    "manufacturer": "qs",
-    "model": "s",
-    "fuel": "s",
-    "type": "s",
-    "vin": "s",
-    "color": null,
-    "mileage": null
-  },
-  {
-    "id": "9",
-    "name": "sqsq",
-    "manufacturer": "sq",
-    "model": "q",
-    "fuel": "s",
-    "type": "qs",
-    "vin": "s",
     "color": null,
     "mileage": null
   }

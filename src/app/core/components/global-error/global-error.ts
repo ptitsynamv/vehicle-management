@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, effect } from '@angular/core';
 import { GlobalErrorService } from '../../services/global-error';
 
 @Component({
@@ -8,7 +8,13 @@ import { GlobalErrorService } from '../../services/global-error';
   styleUrl: './global-error.scss',
 })
 export class GlobalError {
-  constructor(public globalError: GlobalErrorService) {}
+  constructor(public globalError: GlobalErrorService) {
+    effect(() => {
+      if (this.globalError.errorMessage()) {
+        setTimeout(() => this.globalError.clear(), 5000);
+      }
+    });
+  }
 
   public clear(): void {
     this.globalError.clear();

@@ -22,14 +22,23 @@
     } @else { - }
   </p>
 </div>
-} @else if (vehicle === null){ } @else {
+} @else if(isLoading) {} @else if (isError) {
+<div class="flex flex-col items-center">
+  <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">An error occurred</h5>
+  <ng-container *ngTemplateOutlet="mainPageButton"></ng-container>
+</div>
+} @else if(vehicle === null) {
 <div class="flex flex-col items-center">
   <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Vehicle not found</h5>
+  <ng-container *ngTemplateOutlet="mainPageButton"></ng-container>
+</div>
+}
+
+<ng-template #mainPageButton>
   <a
     routerLink="/"
     class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
   >
     Go to main page
   </a>
-</div>
-}
+</ng-template>

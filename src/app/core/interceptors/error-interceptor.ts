@@ -28,9 +28,9 @@ export class ErrorInterceptor implements HttpInterceptor {
         this._globalError.setError(message);
 
         // TODO: Log the error to an external service
-        console.error('HTTP Error:', message);
+        console.error('HTTP Error:', { error });
 
-        return throwError(() => new Error(message));
+        throw error;
       })
     );
   }
