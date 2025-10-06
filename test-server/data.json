@@ -23,12 +23,23 @@
   },
   {
     "id": "3",
-    "name": "qss",
-    "manufacturer": "qs",
-    "model": "sq",
-    "fuel": "sq",
-    "type": "sq",
-    "vin": "sq",
+    "name": "A",
+    "manufacturer": "B",
+    "model": "C",
+    "fuel": "D",
+    "type": "i",
+    "vin": "f",
+    "color": null,
+    "mileage": null
+  },
+  {
+    "id": "4",
+    "name": "Z",
+    "manufacturer": "x",
+    "model": "v",
+    "fuel": "w",
+    "type": "y",
+    "vin": "q",
     "color": null,
     "mileage": null
   }

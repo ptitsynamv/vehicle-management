@@ -2,177 +2,148 @@
   <div class="mb-4">
     <button
       (click)="openModal()"
-      class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
+      class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
       type="button"
     >
       Add new vehicle
     </button>
   </div>
 
-  <div class="-m-1.5 overflow-x-auto">
-    <div class="p-1.5 min-w-full inline-block align-middle">
-      <div class="border border-gray-200 rounded-lg divide-y divide-gray-200">
-        <div class="overflow-hidden">
-          <table class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-gray-50">
-              <tr>
-                <th
-                  scope="col"
-                  class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
+  <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left text-gray-500">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+        <tr>
+          <th scope="col" class="px-6 py-3">
+            <div class="flex items-center">
+              Vehicle name
+              <button
+                (click)="onSortChange('name')"
+                aria-label="Sort by Vehicle name"
+                class="cursor-pointer"
+                type="button"
+              >
+                <svg
+                  class="w-3 h-3 ms-1.5"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
                 >
-                  <div class="flex items-center">
-                    Vehicle name
-                    <button
-                      (click)="onSortChange('name')"
-                      aria-label="Sort by Vehicle name"
-                      class="cursor-pointer"
-                    >
-                      <svg
-                        class="w-3 h-3 ms-1.5"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                </th>
-                <th
-                  scope="col"
-                  class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
+                  <path
+                    d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </th>
+          <th scope="col" class="px-6 py-3">
+            <div class="flex items-center">
+              Manufacturer
+              <button
+                (click)="onSortChange('manufacturer')"
+                aria-label="Sort by Vehicle name"
+                class="cursor-pointer"
+                type="button"
+              >
+                <svg
+                  class="w-3 h-3 ms-1.5"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
                 >
-                  <div class="flex items-center">
-                    Manufacturer
-                    <button
-                      (click)="onSortChange('manufacturer')"
-                      aria-label="Sort by Vehicle name"
-                      class="cursor-pointer"
-                    >
-                      <svg
-                        class="w-3 h-3 ms-1.5"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                </th>
-                <th
-                  scope="col"
-                  class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
+                  <path
+                    d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </th>
+          <th scope="col" class="px-6 py-3">
+            <div class="flex items-center">
+              Model
+              <button
+                (click)="onSortChange('model')"
+                aria-label="Sort by Vehicle name"
+                class="cursor-pointer"
+                type="button"
+              >
+                <svg
+                  class="w-3 h-3 ms-1.5"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
                 >
-                  <div class="flex items-center">
-                    Model
-                    <button
-                      (click)="onSortChange('model')"
-                      aria-label="Sort by Vehicle name"
-                      class="cursor-pointer"
-                    >
-                      <svg
-                        class="w-3 h-3 ms-1.5"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                </th>
-                <th
-                  scope="col"
-                  class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase"
-                >
-                  Mileage
-                </th>
-                <th
-                  scope="col"
-                  class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase"
-                >
-                  Action
-                </th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-gray-200">
-              @for (vehicle of displayedVehicles; track vehicle.id) {
-              <tr>
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
-                  {{ vehicle.name }}
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">
-                  {{ vehicle.manufacturer }}
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                  {{ vehicle.model }}
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                  @if (vehicle.mileage) {
-                  {{ vehicle.mileage }}
-                  } @else { - }
-                </td>
-                <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                  <a
-                    routerLink="/vehicle/{{ vehicle.id }}"
-                    class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 focus:outline-hidden focus:text-blue-800 disabled:opacity-50 disabled:pointer-events-none"
-                  >
-                    View Details
-                  </a>
-                </td>
-              </tr>
-              } @empty { @if(displayedVehicles === null){ } @else {
-              <tr>
-                <td
-                  class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800"
-                  colspan="4"
-                >
-                  No vehicles found.
-                </td>
-              </tr>
-              } }
-            </tbody>
-          </table>
-        </div>
-        <div class="py-1 px-4">
-          <nav class="flex justify-end items-center gap-x-1" aria-label="Pagination">
-            <button
-              type="button"
-              class="p-2.5 min-w-10 inline-flex justify-center items-center gap-x-2 text-sm rounded-full text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none"
-              aria-label="Previous"
-              (click)="prevPage()"
-              [disabled]="currentPage === 1"
+                  <path
+                    d="M8.574 11.024h6.852a2.075 2.075 0 0 0 1.847-1.086 1.9 1.9 0 0 0-.11-1.986L13.736 2.9a2.122 2.122 0 0 0-3.472 0L6.837 7.952a1.9 1.9 0 0 0-.11 1.986 2.074 2.074 0 0 0 1.847 1.086Zm6.852 1.952H8.574a2.072 2.072 0 0 0-1.847 1.087 1.9 1.9 0 0 0 .11 1.985l3.426 5.05a2.123 2.123 0 0 0 3.472 0l3.427-5.05a1.9 1.9 0 0 0 .11-1.985 2.074 2.074 0 0 0-1.846-1.087Z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </th>
+          <th scope="col" class="px-6 py-3">Mileage</th>
+          <th scope="col" class="px-6 py-3">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (vehicle of displayedVehicles; track vehicle.id) {
+        <tr class="bg-white border-b border-gray-200">
+          <td class="px-6 py-4">
+            {{ vehicle.name }}
+          </td>
+          <td class="px-6 py-4">
+            {{ vehicle.manufacturer }}
+          </td>
+          <td class="px-6 py-4">
+            {{ vehicle.model }}
+          </td>
+          <td class="px-6 py-4">
+            @if (vehicle.mileage) {
+            {{ vehicle.mileage }}
+            } @else { - }
+          </td>
+          <td class="px-6 py-4">
+            <a
+              routerLink="/vehicle/{{ vehicle.id }}"
+              class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 focus:outline-hidden focus:text-blue-800 disabled:opacity-50 disabled:pointer-events-none"
             >
-              <span aria-hidden="true">«</span>
-              <span class="sr-only">Previous</span>
-            </button>
+              View Details
+            </a>
+          </td>
+        </tr>
+        } @empty { @if(displayedVehicles === null){ } @else {
+        <tr>
+          <td class="px-6 py-4" colspan="4">No vehicles found.</td>
+        </tr>
+        } }
+      </tbody>
+    </table>
+    <nav class="flex items-center flex-column flex-wrap md:flex-row pt-4" aria-label="Pagination">
+      <button
+        type="button"
+        class="p-2.5 min-w-10 inline-flex justify-center items-center gap-x-2 text-sm rounded-full text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none"
+        aria-label="Previous"
+        (click)="prevPage()"
+        [disabled]="currentPage === 1"
+      >
+        <span aria-hidden="true">«</span>
+        <span class="sr-only">Previous</span>
+      </button>
 
-            <div class="text-sm text-gray-700">Page {{ currentPage }} of {{ totalPages }}</div>
+      <div class="text-sm text-gray-700">Page {{ currentPage }} of {{ totalPages }}</div>
 
-            <button
-              type="button"
-              class="p-2.5 min-w-10 inline-flex justify-center items-center gap-x-2 text-sm rounded-full text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none"
-              aria-label="Next"
-              (click)="nextPage()"
-              [disabled]="currentPage === totalPages"
-            >
-              <span class="sr-only">Next</span>
-              <span aria-hidden="true">»</span>
-            </button>
-          </nav>
-        </div>
-      </div>
-    </div>
+      <button
+        type="button"
+        class="p-2.5 min-w-10 inline-flex justify-center items-center gap-x-2 text-sm rounded-full text-gray-800 hover:bg-gray-100 focus:outline-hidden focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none"
+        aria-label="Next"
+        (click)="nextPage()"
+        [disabled]="currentPage === totalPages"
+      >
+        <span class="sr-only">Next</span>
+        <span aria-hidden="true">»</span>
+      </button>
+    </nav>
   </div>
 </div>
 

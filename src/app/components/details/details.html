@@ -3,42 +3,57 @@
   class="flex flex-col max-w-sm bg-white border border-gray-200 shadow-2xs rounded-xl p-4 md:p-5"
 >
   <h3 class="text-lg font-bold text-gray-800">{{ vehicle.name }}</h3>
-  <p class="mt-1 text-xs font-medium uppercase text-gray-500">ID: {{ vehicle.id }}</p>
-  <p class="mt-1 text-xs font-medium uppercase text-gray-500">
-    Manufacturer: {{ vehicle.manufacturer }}
+  <p class="mt-1 text-md font-medium text-gray-500">
+    <span class="font-bold">ID:</span> {{ vehicle.id }}
   </p>
-  <p class="mt-1 text-xs font-medium uppercase text-gray-500">Model: {{ vehicle.model }}</p>
-  <p class="mt-1 text-xs font-medium uppercase text-gray-500">Fuel: {{ vehicle.fuel }}</p>
-  <p class="mt-1 text-xs font-medium uppercase text-gray-500">Type: {{ vehicle.type }}</p>
-  <p class="mt-1 text-xs font-medium uppercase text-gray-500">VIN: {{ vehicle.vin }}</p>
-  <p class="mt-1 text-xs font-medium uppercase text-gray-500">
-    Color: @if (vehicle.color) {
+  <p class="mt-1 text-md font-medium text-gray-500">
+    <span class="font-bold">Manufacturer:</span> {{ vehicle.manufacturer }}
+  </p>
+  <p class="mt-1 text-md font-medium text-gray-500">
+    <span class="font-bold">Model:</span> {{ vehicle.model }}
+  </p>
+  <p class="mt-1 text-md font-medium text-gray-500">
+    <span class="font-bold">Fuel:</span> {{ vehicle.fuel }}
+  </p>
+  <p class="mt-1 text-md font-medium text-gray-500">
+    <span class="font-bold">Type:</span> {{ vehicle.type }}
+  </p>
+  <p class="mt-1 text-md font-medium text-gray-500">
+    <span class="font-bold">VIN:</span> {{ vehicle.vin }}
+  </p>
+  <p class="mt-1 text-md font-medium text-gray-500">
+    <span class="font-bold">Color:</span> @if (vehicle.color) {
     {{ vehicle.color }}
     } @else { - }
   </p>
-  <p class="mt-1 text-xs font-medium uppercase text-gray-500">
-    Mileage: @if (vehicle.mileage) {
+  <p class="mt-1 text-md font-medium text-gray-500">
+    <span class="font-bold">Mileage:</span> @if (vehicle.mileage) {
     {{ vehicle.mileage }}
     } @else { - }
   </p>
 </div>
 } @else if(isLoading) {} @else if (isError) {
-<div class="flex flex-col items-center">
-  <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">An error occurred</h5>
-  <ng-container *ngTemplateOutlet="mainPageButton"></ng-container>
-</div>
+<ng-container
+  [ngTemplateOutlet]="errorText"
+  [ngTemplateOutletContext]="{ $implicit: 'An error occurred' }"
+>
+</ng-container>
 } @else if(vehicle === null) {
-<div class="flex flex-col items-center">
-  <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Vehicle not found</h5>
-  <ng-container *ngTemplateOutlet="mainPageButton"></ng-container>
-</div>
+<ng-container
+  [ngTemplateOutlet]="errorText"
+  [ngTemplateOutletContext]="{ $implicit: 'Vehicle not found' }"
+>
+</ng-container>
 }
 
-<ng-template #mainPageButton>
-  <a
-    routerLink="/"
-    class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300"
-  >
-    Go to main page
-  </a>
+<ng-template #errorText let-text>
+  <div class="flex flex-col items-center">
+    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{ text }}</h5>
+    <a
+      routerLink="/"
+      class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+    >
+      Go to main page
+    </a>
+  </div>
 </ng-template>
