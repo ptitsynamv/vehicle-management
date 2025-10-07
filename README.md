@@ -21,6 +21,12 @@ npm install
 npm start
 ```
 
+3. Run unit tests:
+
+```bash
+npm test
+```
+
 ## Dev Server (Test Server)
 
 The project includes a dev server located in the `test-server` folder.

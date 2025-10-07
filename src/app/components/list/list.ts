@@ -1,16 +1,10 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { VehicleService } from '../../services/vehicle';
 import { CreateVehicle, SortableVehicleKeys, Vehicle } from '../../models/vehicle.model';
 import { RouterLink } from '@angular/router';
 import { SortOrder } from '../../models/common.model';
 import { AddVehicleModal } from '../add-vehicle-modal/add-vehicle-modal';
-import { catchError } from 'rxjs';
+import { catchError, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-list',
@@ -65,6 +59,7 @@ export class List implements OnInit {
 
   public closeModal(): void {
     this.isModalOpen = false;
+    this.errorMessage = '';
   }
 
   public onVehicleAdded(vehicle: CreateVehicle): void {
@@ -74,11 +69,10 @@ export class List implements OnInit {
         catchError((error) => {
           this.errorMessage = 'Failed to add vehicle. Please try again.';
           this._ref.detectChanges();
-          throw error;
+          return throwError(() => error);
         })
       )
       .subscribe(() => {
-        this.errorMessage = '';
         this.closeModal();
         this._loadVehicles();
       });

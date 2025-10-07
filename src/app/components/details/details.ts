@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@
 import { Vehicle } from '../../models/vehicle.model';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { VehicleService } from '../../services/vehicle';
-import { catchError, finalize } from 'rxjs';
+import { catchError, finalize, of } from 'rxjs';
 import { NgTemplateOutlet } from '@angular/common';
 
 @Component({
@@ -35,9 +35,8 @@ export class Details implements OnInit {
           catchError((error) => {
             if (error.status !== 404) {
               this.isError = true;
-              this._ref.detectChanges();
             }
-            throw error;
+            return of(null);
           }),
           finalize(() => {
             this.isLoading = false;
@@ -46,7 +45,6 @@ export class Details implements OnInit {
         )
         .subscribe((data) => {
           this.vehicle = data;
-          this._ref.detectChanges();
         });
     });
   }

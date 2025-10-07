@@ -27,16 +27,24 @@ export class AddVehicleModal {
   @Output() public save = new EventEmitter<CreateVehicle>();
 
   public vehicleForm = new FormGroup({
-    name: new FormControl('', [Validators.required]),
-    manufacturer: new FormControl('', [Validators.required]),
-    model: new FormControl('', [Validators.required]),
-    fuel: new FormControl('', [Validators.required]),
-    type: new FormControl('', [Validators.required]),
-    vin: new FormControl('', [Validators.required]),
+    name: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
+    manufacturer: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
+    model: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
+    fuel: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
+    type: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
+    vin: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
     color: new FormControl(null),
     mileage: new FormControl(null, [Validators.min(0)]),
   });
   public isModalOpen = signal(false);
+
+  constructor() {
+    effect(() => {
+      if (!this.isModalOpen()) {
+        this.vehicleForm.reset();
+      }
+    });
+  }
 
   public onSubmit(): void {
     if (this.vehicleForm.valid) {
@@ -49,11 +57,4 @@ export class AddVehicleModal {
   public onClose(): void {
     this.close.emit();
   }
-
-  private _clearFormEffect = effect(() => {
-    if (!this.isModalOpen()) {
-      this.vehicleForm.reset();
-      this.errorMessage = '';
-    }
-  });
 }

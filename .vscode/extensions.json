@@ -1,4 +1,16 @@
 {
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=827846
-  "recommendations": ["angular.ng-template"]
+  "recommendations": [
+    "Angular.ng-template",
+    "Mikael.Angular-BeastCode",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "bradlc.vscode-tailwindcss",
+    "PKief.material-icon-theme",
+    "eamodio.gitlens",
+    "christian-kohler.path-intellisense",
+    "wix.vscode-import-cost",
+    "Orta.vscode-jest",
+    "ecmel.vscode-html-css",
+    "ExodiusStudios.comment-anchors"
+  ]
 }
