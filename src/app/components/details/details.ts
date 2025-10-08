@@ -27,7 +27,6 @@ export class Details implements OnInit {
     this._route.params.subscribe((params) => {
       const { id } = params;
       this.isLoading = true;
-      this._ref.detectChanges();
 
       this._vehicleService
         .getVehicleById(id)

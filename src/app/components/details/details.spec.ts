@@ -66,7 +66,7 @@ describe('Details Component', () => {
     expect(component.vehicle).toEqual(mockVehicle);
     expect(component.isLoading).toBeFalse();
     expect(component.isError).toBeFalse();
-    expect(detectSpy).toHaveBeenCalledTimes(2); // before request and in finalize
+    expect(detectSpy).toHaveBeenCalledTimes(1);
   }));
 
   it('should not set isError on 404 and stop loading', fakeAsync(() => {
@@ -80,7 +80,7 @@ describe('Details Component', () => {
     expect(component.vehicle).toBeNull();
     expect(component.isError).toBeFalse();
     expect(component.isLoading).toBeFalse();
-    expect(detectSpy).toHaveBeenCalledTimes(2);
+    expect(detectSpy).toHaveBeenCalledTimes(1);
   }));
 
   it('should set isError on non-404 errors and stop loading', fakeAsync(() => {
@@ -94,6 +94,6 @@ describe('Details Component', () => {
     expect(component.vehicle).toBeNull();
     expect(component.isError).toBeTrue();
     expect(component.isLoading).toBeFalse();
-    expect(detectSpy).toHaveBeenCalledTimes(2);
+    expect(detectSpy).toHaveBeenCalledTimes(1);
   }));
 });
